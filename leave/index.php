@@ -1,7 +1,5 @@
 <?php
-// A simple web site in Cloud9 that runs through Apache
-// Press the 'Run' button on the top to start the web server,
-// then click the URL that is emitted to the Output tab of the console
+// Sends a request to maker if it's a working day evening.
 
 include 'vendor/autoload.php';
 
@@ -10,16 +8,34 @@ use Checkdomain\Holiday\Provider\DE;
 $holidayChecked = new \Checkdomain\Holiday\Util();
 $client         = new \GuzzleHttp\Client();
 
-$url = 'https://maker.ifttt.com/use/' . getenv('MAKER_KEY');
-if (!$holidayChecked->isHoliday('DE', 'now', DE::STATE_BE) && isEvening()) {
-    $res = $client->request('GET', $url);
-    echo 'yes';
+$url = 'https://maker.ifttt.com/trigger/leave/with/key/' . getenv('MAKER_KEY');
+if (
+    !$holidayChecked->isHoliday('DE', 'now', DE::STATE_BE)
+    && isEvening()
+    && isWeekday()
+) {
+    $res = $client->request('POST', $url, ['json' => ['value1' => 'left']]);
+    echo 'request sent';
 } else {
-    echo 'no';
+    echo 'request not sent';
 }
-echo $url;
 
+/**
+ * isEvening
+ *
+ * @return bool
+ */
 function isEvening()
 {
     return date('H') >= 17 && date('H') <= 24;
+}
+
+/**
+ * isWeekday
+ *
+ * @return bool
+ */
+function isWeekday()
+{
+    return date('N') < 6;
 }
