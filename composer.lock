@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "dc28d57e757bc3cc742b60df904402d1",
+    "content-hash": "f004608a9e799a0f5d6dae84ff47d2ab",
+    "packages": [
+        {
+            "name": "checkdomain/holiday",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/checkdomain/Holiday.git",
+                "reference": "6dbb610d9983aa69e2beeedf6c24fbf3931f460b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/checkdomain/Holiday/zipball/6dbb610d9983aa69e2beeedf6c24fbf3931f460b",
+                "reference": "6dbb610d9983aa69e2beeedf6c24fbf3931f460b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-calendar": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Checkdomain\\Holiday": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Paap",
+                    "email": "b.paap@checkdomain.de",
+                    "homepage": "http://checkdomain.de"
+                }
+            ],
+            "description": "Checkdomain/Holiday provides a simple class to get holidays for a specified country",
+            "keywords": [
+                "holiday"
+            ],
+            "time": "2016-03-07 08:43:48"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

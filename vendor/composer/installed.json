@@ -1,0 +1,48 @@
+[
+    {
+        "name": "checkdomain/holiday",
+        "version": "v2.0.2",
+        "version_normalized": "2.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/checkdomain/Holiday.git",
+            "reference": "6dbb610d9983aa69e2beeedf6c24fbf3931f460b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/checkdomain/Holiday/zipball/6dbb610d9983aa69e2beeedf6c24fbf3931f460b",
+            "reference": "6dbb610d9983aa69e2beeedf6c24fbf3931f460b",
+            "shasum": ""
+        },
+        "require": {
+            "ext-calendar": "*",
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-03-07 08:43:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Checkdomain\\Holiday": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Benjamin Paap",
+                "email": "b.paap@checkdomain.de",
+                "homepage": "http://checkdomain.de"
+            }
+        ],
+        "description": "Checkdomain/Holiday provides a simple class to get holidays for a specified country",
+        "keywords": [
+            "holiday"
+        ]
+    }
+]

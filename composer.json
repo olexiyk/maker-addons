@@ -1,0 +1,13 @@
+{
+  "name": "olexiy/ifttt-addons",
+  "type": "project",
+  "require": {
+    "checkdomain/holiday": "^2.0"
+  },
+  "authors": [
+    {
+      "name": "olexiyk",
+      "email": "olexiy.kyrychenko@gmail.com"
+    }
+  ]
+}
