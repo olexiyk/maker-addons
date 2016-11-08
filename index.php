@@ -5,7 +5,7 @@ include 'vendor/autoload.php';
 
 $app = new \Slim\App();
 
-$app->any('/leave', function ($request, $response, $args) {
+$app->any('/', function ($request, $response, $args) {
     $holidayChecker = new \Checkdomain\Holiday\Util();
     $client         = new \GuzzleHttp\Client();
     $result         = (new \Olek\Ifttt\Leave($holidayChecker, $client))->run();
