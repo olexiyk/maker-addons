@@ -1,0 +1,20 @@
+{
+  "name": "olexiy/ifttt-addons",
+  "type": "project",
+  "require": {
+    "checkdomain/holiday": "^2.0",
+    "guzzlehttp/guzzle": "^6.2",
+    "slim/slim": "^3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Olek\\Ifttt\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "olexiyk",
+      "email": "olexiy.kyrychenko@gmail.com"
+    }
+  ]
+}
