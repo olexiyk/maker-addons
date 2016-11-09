@@ -28,12 +28,27 @@ $app->add(function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http
     return $response;
 });
 
-$app->any('/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
+$app->any('/leave/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
     $holidayChecker = new \Checkdomain\Holiday\Util();
     $client         = new \GuzzleHttp\Client();
     $result         = (new \Olek\Ifttt\Leave($holidayChecker, $client, [], $request->getParams()))->run();
     $response->write($result);
     return $response;
+});
+
+$app->any('/fb/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
+    $access_token     = getenv('FB_ACCESS_TOKEN');
+    $verify_token     = getenv('FB_VERIFY_TOKEN');
+    $hub_verify_token = null;
+
+    if (isset($_REQUEST['hub_challenge'])) {
+        $challenge        = $_REQUEST['hub_challenge'];
+        $hub_verify_token = $_REQUEST['hub_verify_token'];
+    }
+
+    if ($hub_verify_token === $verify_token) {
+        echo $challenge;
+    }
 });
 
 $app->run();
