@@ -44,7 +44,7 @@ $app->any('/leave/', function (\Psr\Http\Message\ServerRequestInterface $request
     return $response;
 });
 
-$app->any('/fb-verify/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
+$app->any('/fb/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
     $verify_token     = getenv('FB_VERIFY_TOKEN');
     $hub_verify_token = null;
 
