@@ -31,7 +31,7 @@ $app->add(function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http
 $app->any('/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
     $holidayChecker = new \Checkdomain\Holiday\Util();
     $client         = new \GuzzleHttp\Client();
-    $result         = (new \Olek\Ifttt\Leave($holidayChecker, $client))->run();
+    $result         = (new \Olek\Ifttt\Leave($holidayChecker, $client, [], $request->getParams()))->run();
     $response->write($result);
     return $response;
 });

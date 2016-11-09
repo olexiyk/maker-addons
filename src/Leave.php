@@ -13,17 +13,23 @@ class Leave
      * @var \GuzzleHttp\Client
      */
     private $httpClient;
+    /**
+     * @var array
+     */
+    private $params;
 
     /**
      * Leave constructor.
      *
      * @param \Checkdomain\Holiday\Util $holidayChecker
      * @param \GuzzleHttp\Client        $httpClient
+     * @param array                     $params
      */
-    public function __construct(\Checkdomain\Holiday\Util $holidayChecker, \GuzzleHttp\Client $httpClient)
+    public function __construct(\Checkdomain\Holiday\Util $holidayChecker, \GuzzleHttp\Client $httpClient, array $params)
     {
         $this->holidayChecker = $holidayChecker;
         $this->httpClient     = $httpClient;
+        $this->params         = $params;
     }
 
 
@@ -39,6 +45,7 @@ class Leave
             !$this->holidayChecker->isHoliday('DE', 'now', DE::STATE_BE)
             && $this->isEvening()
             && $this->isWeekday()
+            && $this->params["ConnectedToOrDisconnectedFrom"] == "disconnected from"
         ) {
             $res = $this->httpClient->request('POST', $url, ['json' => ['value1' => 'left']]);
             return 'request sent';
