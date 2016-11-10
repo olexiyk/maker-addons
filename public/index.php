@@ -1,7 +1,7 @@
 <?php
 // Sends a request to maker if it's a working day evening.
 
-include 'vendor/autoload.php';
+include '../vendor/autoload.php';
 
 $container = new \Slim\Container();
 
@@ -50,6 +50,25 @@ $app->any('/fb/', function (\Psr\Http\Message\ServerRequestInterface $request, \
 
     if (isset($_REQUEST['hub_challenge']) && $_REQUEST['hub_verify_token'] == $verify_token) {
         echo $_REQUEST['hub_challenge'];
+    }
+});
+
+$app->any('/oauthcallback/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
+    session_start();
+
+    $client = new Google_Client();
+    $config = unserialize(getenv('GOOGLE_CONFIG'));
+    $client->setAuthConfig($config);
+    $client->addScope(Google_Service_Drive::DRIVE_METADATA_READONLY);
+
+    if (!isset($_GET['code'])) {
+        $auth_url = $client->createAuthUrl();
+        header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
+    } else {
+        $client->authenticate($_GET['code']);
+        $_SESSION['access_token'] = $client->getAccessToken();
+        $redirect_uri             = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+        header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     }
 });
 
