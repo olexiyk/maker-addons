@@ -26,3 +26,7 @@ TODO
     
     # actual deployment after new commits 
     $ git push heroku master
+
+# Running locally
+
+    $ php -S localhost:8000 -t public

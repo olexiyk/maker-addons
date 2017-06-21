@@ -1,7 +1,7 @@
 <?php
 include '../vendor/autoload.php';
 
-date_default_timezone_set(getenv('TZ'));
+date_default_timezone_set(getenv('TZ') ?: 'UTC');
 
 $container = new \Slim\Container();
 
