@@ -1,7 +1,7 @@
 <?php
-// Sends a request to maker if it's a working day evening.
-
 include '../vendor/autoload.php';
+
+date_default_timezone_set(getenv('TZ'));
 
 $container = new \Slim\Container();
 
@@ -28,6 +28,7 @@ $app->add(function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http
     return $response;
 });
 
+// leave triggered
 $app->any('/leave/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
     $conditions = [
         new \Olek\Ifttt\Conditions\Evening(),
@@ -37,13 +38,13 @@ $app->any('/leave/', function (\Psr\Http\Message\ServerRequestInterface $request
     ];
     $client     = new \GuzzleHttp\Client();
     $actions    = [
-//        new \Olek\Ifttt\Actions\Maker($client),
         new \Olek\Ifttt\Actions\FacebookMessage($client),
     ];
     (new \Olek\Ifttt\Application($conditions, $actions))->run();
     return $response;
 });
 
+// facebook verification
 $app->any('/fb/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
     $verify_token     = getenv('FB_VERIFY_TOKEN');
     $hub_verify_token = null;
@@ -53,6 +54,7 @@ $app->any('/fb/', function (\Psr\Http\Message\ServerRequestInterface $request, \
     }
 });
 
+// google calendar verification
 $app->any('/oauthcallback/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
     session_start();
 
