@@ -33,7 +33,7 @@ class FacebookMessage implements ActionRunnerInterface
                 "id" => $sender,
             ],
             "message" => [
-                "text" => "буду вдома за 20-25 хвилин",
+                "text" => "буду вдома за 35-40 хвилин",
             ],
         ];
 
